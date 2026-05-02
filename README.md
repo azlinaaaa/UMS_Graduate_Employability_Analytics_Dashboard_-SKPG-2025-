@@ -198,7 +198,7 @@ The Oil & Gas program, however, reveals a unique pattern where a large proportio
 
 ### 3. Faculty of Medicine & Health Sciences
 
-![FMHS Faculty Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/FSSK_Faculty.png)
+![FMHS Faculty Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/07e28e243ec758a2863dea3f90c0f14be65a7a3d/Dashboard/FSSK_Faculty.png)
 
 | Metric | Value |
 |--------|-------|
