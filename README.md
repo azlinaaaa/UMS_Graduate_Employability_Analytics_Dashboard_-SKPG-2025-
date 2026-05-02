@@ -1,75 +1,81 @@
 # 🎓 UMS Graduate Employability Analytics Dashboard (SKPG 2025)
 
 ## 📌 Project Overview
-This project presents an interactive **Graduate Tracer Dashboard (Pengesanan Graduan 2025 - SKPG)** developed using **Power BI** to analyze graduate outcomes from University Malaysia Sabah (UMS).
 
-The dashboard is designed to support **data-driven decision making** for:
-- Deans of each faculty
-- Vice Chancellor (VC)
-- Deputy Vice Chancellor (DVC)
-- University top management  
+This repository hosts the **UMS Graduate Tracer Dashboard** – an enterprise-grade Power BI analytics solution developed for **Universiti Malaysia Sabah (UMS)**. The dashboard transforms raw graduate tracer data into actionable intelligence for university leadership.
 
-👉 It is used during **faculty-level and executive meetings** to monitor graduate employability performance and support strategic planning.
+### 🎯 Primary Stakeholders & Use Cases
 
----
+| Stakeholder | Purpose |
+|-------------|---------|
+| **Vice Chancellor (VC)** | University-wide employability performance review |
+| **Deputy Vice Chancellor (DVC)** | Strategic KPI tracking & resource allocation |
+| **Faculty Deans** | Faculty-level performance monitoring & program improvement |
+| **Executive Management** | Data-driven decision making for academic planning |
 
-## 📂 Dataset
-- **Source**: Raw dataset from University Malaysia Sabah (UMS)  
-- Covers **18 faculties** and multiple academic programs  
+### 💼 Business Impact
 
----
+> **Enables faculty-level and executive meetings** with real-time graduate outcome insights, supporting strategic planning and enhancing UMS’s institutional reputation for graduate employability.
 
-## 🧹 Data Preparation
-The dataset was processed through:
+This dashboard bridges the gap between raw graduate tracer data and executive decision-making. By consolidating employability metrics across faculties, it allows leadership to quickly identify underperforming areas, allocate resources effectively, and design targeted interventions to improve graduate outcomes.
 
-- Handling missing (blank) values  
-- Cleaning and standardizing employment categories  
-- Ensuring data consistency  
-- Validating totals for accurate reporting  
+At the executive level, it reduces reliance on manual reporting and enables data-driven discussions during strategic meetings, particularly for tracking institutional KPIs such as Graduate Employability (GE) and Graduate Marketability (GM).
 
 ---
 
-## 📊 Dashboard Design
+## 📂 Dataset Overview
 
-[![OVERALL Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/c73f83990b0b3523d2137b0addc2c3424ddc96ce/Dashboard/Overall_Dashboard.png)
-
-### 📊 Bar Chart (Graduate Status Distribution)
-- 157 Employed  
-- 50 Further Studies  
-- 33 Unemployed  
-- 6 Skill Enhancement  
-- 1 Awaiting Placement  
-
-👉 Bar Cahrt can highlights the highest and lowest categories clearly.
+| Attribute | Details |
+|-----------|---------|
+| **Source** | Raw graduate tracer data – University Malaysia Sabah (UMS) |
+| **Coverage** | 18 faculties + multiple academic programs |
+| **Data Year** | SKPG 2025 |
+| **Data Format** | Structured dataset (CSV/Excel) |
 
 ---
 
-### 📈 KPI Cards
-- Total Graduates: 247  
-- Employed: 157  
-- Unemployed: 33  
-- Further Studies: 50  
-- Skill Enhancement: 6  
-- Awaiting Placement: 1  
+## 🧹 Data Preparation & ETL
 
-👉 Provides a quick executive summary.
+The raw dataset underwent a rigorous cleaning and transformation process:
 
----
+- ✅ Handling missing (null/blank) values
+- ✅ Standardizing employment category labels
+- ✅ Ensuring data consistency across 18 faculties
+- ✅ Validating graduate totals for accurate reporting
+- ✅ Structuring data for DAX calculations
 
-### 🎛️ Slicers
-- Faculty (18 faculties)  
-- Program (dynamic based on selected faculty)  
+This step was critical to ensure data reliability and consistency across faculties. Given that the dataset originated from multiple sources and formats, inconsistencies in labeling and missing values could significantly impact KPI accuracy.
 
-✔ Allows users to focus on specific faculty and program  
-✔ Improves usability and analysis efficiency  
+By standardizing categories and validating totals, the dataset was transformed into a clean analytical layer, ensuring that all downstream visualizations and calculations reflect accurate institutional performance.
 
 ---
 
-## 📐 DAX Measures (Core Calculations)
+## 🖥️ Dashboard Features
 
-### 📉 Graduate Employment (GE) – Optimized
+![Overall Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/Overall_Dashboard.png)
 
-```DAX
+#### Key Components:
+
+| Feature | Description |
+|---------|-------------|
+| **📊 Bar Chart** | Sorted highest to lowest – enables rapid analysis of graduate outcomes |
+| **📇 KPI Cards** | Exact numerical values for each outcome category |
+| **🎛️ Slicers** | Dynamic filtering by **Faculty** & **Program of Study** |
+| **📐 GE & GM Metrics** | Faculty-level calculations (not program-specific) |
+| **🏛️ Faculty Filter** | View data for any of 18 faculties |
+
+The dashboard is designed with an executive-first approach, prioritizing clarity and speed of interpretation.
+
+- The sorted bar chart allows stakeholders to immediately identify top and bottom performing categories without manual comparison.
+- KPI cards provide quick numerical summaries for high-level reporting.
+- Interactive slicers enable drill-down analysis, allowing users to transition from university-wide insights to specific faculties or programs.
+
+This design ensures that both strategic (VC/DVC) and operational (Deans) users can extract value from the same dashboard.
+
+## 📐 Core DAX Formulas
+
+**% Graduate Employability (GE) – Overall**
+```dax
 % GE KESELURUHAN =
 DIVIDE(
     CALCULATE(
@@ -84,13 +90,8 @@ DIVIDE(
 )
 ```
 
-👉 Measures proportion of employed graduates at faculty level.
-
----
-
-### 📈 Graduate Marketability (GM)
-
-```DAX
+**% Graduate Marketability (GM) – Overall**
+```dax
 % GM KESELURUHAN = 
 DIVIDE(
     CALCULATE(
@@ -106,71 +107,211 @@ DIVIDE(
 )
 ```
 
-👉 Includes employed, further studies, skill enhancement, and awaiting placement.
+> **⚠️ Important:** GE & GM are calculated **at faculty level only**, not per program. This ensures consistency in executive reporting.
+
+Graduate Employability (GE) and Graduate Marketability (GM) are standardized KPIs used in higher education performance tracking.
+
+GE measures the proportion of graduates who are employed, reflecting immediate job placement success.
+GM expands this definition by including graduates who are pursuing further studies, undergoing upskilling, or awaiting placement.
+
+By calculating these metrics at the faculty level, the dashboard avoids distortion caused by small program sample sizes and ensures fair comparison across faculties.
 
 ---
 
-## 📊 Key Metrics
+## 🏛️ Faculty Performance Dashboards
 
-### 📉 Graduate Employment (GE)
-- Measures employment rate only  
-- Example: 63.56% (ASTIF)  
+### 1. Faculty of Computer & Informatics (FKI)
 
----
+![FKI Faculty Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/FKI_Faculty.png)
 
-### 📈 Graduate Marketability (GM)
-- Broader indicator of graduate success  
-- Example: 86.64% (ASTIF)  
+| Metric | Value |
+|--------|-------|
+| Total Graduates | 376 |
+| Employed | 289 |
+| Unemployed | 36 |
+| Further Study | 18 |
+| Upskilling | 25 |
+| Waiting Placement | 8 |
+| **GE** | **76.86%** |
+| **GM** | **90.43%** |
 
----
+The Faculty of Computer & Informatics demonstrates strong employability performance with a GE of 76.86% and GM of 90.43%.
 
-## 🔍 Analytical Capabilities
-- Compare across 18 faculties  
-- Drill down into specific programs  
-- Identify unemployed graduates  
-- Support intervention planning  
-
----
-
-## 🎓 Program-Level Dashboard
-Example: PhD in Computer Science  
-
-### 📌 Program-Level Dashboard
-![Program Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/c73f83990b0b3523d2137b0addc2c3424ddc96ce/Dashboard/FKI_ProgramPengajian_Dashboard.png)
-
-⚠️ Note:
-- GE and GM remain constant  
-- Calculated at faculty level, not per program  
+However, the presence of unemployed graduates (36) suggests potential gaps in job alignment or market demand, indicating opportunities for curriculum enhancement or stronger industry collaboration.
 
 ---
 
-## 🛠️ Tools & Technologies
-- Power BI  
-- DAX (Data Analysis Expressions)  
-- Data Cleaning & Transformation  
+### 📘 FKI – Data Science Program
+
+![FKI Data Science Program](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/FKI_Faculty_Program_Data_Science.png)
+
+| Metric | Value |
+|--------|-------|
+| Total Graduates | 73 |
+| Employed | 53 |
+| Unemployed | 12 |
+| Further Study | 3 |
+| Upskilling | 4 |
+| Waiting Placement | 1 |
+| Faculty | Computer & Informatics |
+| Program | Data Science |
 
 ---
 
-## 💡 Key Insights
-- 50 graduates pursue further studies  
-- 33 graduates are unemployed and can be tracked  
-- GM provides a more holistic view than GE  
+### 2. Faculty of Engineering (FKJ)
+
+![FKJ Faculty Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/FKJ_Faculty.png)
+
+| Metric | Value |
+|--------|-------|
+| Total Graduates | 312 |
+| Employed | 254 |
+| Unemployed | 28 |
+| Further Study | 20 |
+| Upskilling | 7 |
+| Waiting Placement | 3 |
+| **GE** | **81.41%** |
+| **GM** | **91.03%** |
+
+Engineering shows the highest employability among the three faculties (GE: 81.41%), indicating strong industry demand.
+
+The Oil & Gas program, however, reveals a unique pattern where a large proportion of graduates pursue further studies (14 out of 21), suggesting either specialization requirements or limited immediate job opportunities in the sector.
 
 ---
 
-## 🎯 Business Impact
+### ⛽ FKJ – Oil & Gas Program
 
-This dashboard supports:
+![FKJ Oil & Gas Program](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/FKJ_Faculty_Program_Oil_and_Gas.png)
 
-### 👨‍🏫 Deans
-- Monitor faculty-level graduate performance  
+| Metric | Value |
+|--------|-------|
+| Total Graduates | 21 |
+| Employed | 2 |
+| Unemployed | 3 |
+| Further Study | 14 |
+| Upskilling | 1 |
+| Waiting Placement | 1 |
+| Faculty | Engineering |
+| Program | Oil & Gas |
 
-### 🏫 University Management
-- Track employability trends  
+---
 
-### 👔 Executive Meetings
-Used in discussions with:
-- Vice Chancellor (VC)  
-- Deputy Vice Chancellor (DVC)  
+### 3. Faculty of Medicine & Health Sciences
 
-👉 Enables data-driven decision making and strategic planning  
+![FMHS Faculty Dashboard](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/FSSK_Faculty.png)
+
+| Metric | Value |
+|--------|-------|
+| Total Graduates | 247 |
+| Employed | 157 |
+| Unemployed | 33 |
+| Further Study | 50 |
+| Upskilling | 6 |
+| Waiting Placement | 1 |
+| **GE** | **63.56%** |
+| **GM** | **86.64%** |
+
+The Faculty of Medicine & Health Sciences has a relatively lower GE (63.56%) but maintains a high GM (86.64%).
+
+This is largely influenced by the Medical Doctor program, where a significant number of graduates are in waiting placement (31) — a structural characteristic of the medical profession rather than a performance issue.
+
+---
+
+### 🩺 FMHS – Medical Doctor Program
+
+![FMHS Medical Doctor Program](https://github.com/azlinaaaa/UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/blob/625ad5403ced7ccb8a24c573210e61a9d735ffa9/Dashboard/FSSK_Faculty_Program_Medical_Doctor.png)
+
+| Metric | Value |
+|--------|-------|
+| Total Graduates | 91 |
+| Employed | 58 |
+| Unemployed | 0 |
+| Further Study | 2 |
+| Upskilling | 0 |
+| Waiting Placement | 31 |
+| Faculty | Medicine & Health Sciences |
+| Program | Medical Doctor |
+
+---
+
+## 📊 Executive Summary Dashboard
+
+| Faculty | Graduates | Employed | GE (%) | GM (%) |
+|---------|-----------|----------|--------|--------|
+| Computer & Informatics (FKI) | 376 | 289 | 76.86% | 90.43% |
+| Engineering (FKJ) | 312 | 254 | 81.41% | 91.03% |
+| Medicine & Health Sciences | 247 | 157 | 63.56% | 86.64% |
+
+The executive summary provides a consolidated view of faculty performance, enabling quick benchmarking across faculties.
+
+From this view:
+
+- Engineering leads in employability (GE)
+- Computer & Informatics shows balanced performance
+- Medicine reflects structural employment pathways rather than traditional job placement
+
+This allows leadership to differentiate between performance issues vs systemic factors.
+
+---
+
+## 👔 Executive Meeting Use Cases
+
+| Meeting Type | Dashboard Application |
+|--------------|----------------------|
+| **VC Monthly Review** | University-wide GE/GM trends, faculty ranking |
+| **DVC Strategic Planning** | Resource allocation to low-GE faculties |
+| **Faculty Dean Meetings** | Program-level drill-down for underperforming courses |
+| **Board of Directors** | Institutional employability KPIs |
+
+The dashboard is specifically designed to support multiple levels of decision-making:
+
+- At the VC level, it provides a high-level overview of institutional performance.
+- At the DVC level, it supports strategic interventions and policy decisions.
+- At the faculty level, it enables targeted program improvements.
+
+This multi-layer usability makes the dashboard a central decision-support system within the university.
+
+---
+
+## 🛠️ Technical Stack
+
+| Component | Technology |
+|-----------|------------|
+| Dashboard | Power BI Desktop |
+| Data Processing | Power Query (ETL) |
+| Calculations | DAX (Data Analysis Expressions) |
+| Data Source | UMS Graduate Tracer Dataset (SKPG 2025) |
+| Version Control | GitHub |
+
+---
+
+## 📁 Repository Structure
+
+```
+UMS_Graduate_Employability_Analytics_Dashboard_-SKPG-2025-/
+│
+├── Dashboard/
+│   ├── Overall_Dashboard.png
+│   ├── FKI_Faculty.png
+│   ├── FKI_Faculty_Program_Data_Science.png
+│   ├── FKJ_Faculty.png
+│   ├── FKJ_Faculty_Program_Oil_and_Gas.png
+│   ├── FSSK_Faculty.png
+│   └── FSSK_Faculty_Program_Medical_Doctor.png
+│
+├── Data/
+│   └── ANALISIS_FAKULTI.csv
+│
+├── UMS_Graduate_Dashboard.pbix
+└── README.md
+```
+
+
+---
+
+## 📄 License
+
+© 2025 Universiti Malaysia Sabah (UMS) – All Rights Reserved  
+This dashboard is for **internal university governance and executive decision-making only**. Not for external redistribution without written permission.
+
+---
